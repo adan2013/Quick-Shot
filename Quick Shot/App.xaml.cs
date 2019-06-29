@@ -22,13 +22,21 @@ namespace Quick_Shot
                 Environment.Exit(0);
             }
 
+            //HotKeyManager.RegisterHotKey(System.Windows.Forms.Keys.X, KeyModifiers.Alt);
+            //HotKeyManager.RegisterHotKey(System.Windows.Forms.Keys.N, KeyModifiers.Windows);
+            //HotKeyManager.HotKeyPressed += HotKeyManager_HotKeyPressed;
 
-            System.Threading.Thread.Sleep(4000);
-            string temp = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\temp.bmp";
-            Capture cap = new Capture();
-            cap.CaptureActiveWindow().Save(temp);
-            System.Diagnostics.Process.Start(temp);
-            Environment.Exit(0);
+            //System.Threading.Thread.Sleep(4000);
+            //string temp = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\temp.bmp";
+            //Capture cap = new Capture();
+            //cap.CaptureActiveWindow().Save(temp);
+            //System.Diagnostics.Process.Start(temp);
+            //Environment.Exit(0);
+        }
+
+        private void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("HOTKEY! {0} {1}", e.Key.ToString(), e.Modifiers.ToString());
         }
     }
 }
