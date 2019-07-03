@@ -1,0 +1,24 @@
+﻿<Window x:Class="Quick_Shot.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quick_Shot"
+        mc:Ignorable="d"
+        Title="Settings" Height="480" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80px" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="TabPanel" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ToggleButton Click="TabButton_Click" Tag="0" ToolTip="General settings" IsChecked="True">General</ToggleButton>
+            <ToggleButton Click="TabButton_Click" Tag="1" ToolTip="Keyboard settings">Keyb</ToggleButton>
+            <ToggleButton Click="TabButton_Click" Tag="2" ToolTip="Editor settings">Editor</ToggleButton>
+            <ToggleButton Click="TabButton_Click" Tag="3" ToolTip="Output settings">Output</ToggleButton>
+            <ToggleButton Click="TabButton_Click" Tag="4" ToolTip="Settings tab: 4">4</ToggleButton>
+            <ToggleButton Click="TabButton_Click" Tag="5" ToolTip="Settings tab: 5">5</ToggleButton>
+        </StackPanel>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="settings_frame" />
+    </Grid>
+</Window>

@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Quick_Shot">
 
+    <!--BUTTONS-->
     <Style TargetType="Button">
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="Background" Value="White" />
-        <Setter Property="Margin" Value="3" />
+        <Setter Property="Margin" Value="5" />
         <Setter Property="Width" Value="50px" />
         <Setter Property="Height" Value="50px" />
         <Setter Property="Cursor" Value="Hand" />
@@ -21,7 +22,45 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF94D3E6"/>
+                <Setter Property="Background" Value="#FFD7E0E2"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#FFA0A0A0"/>
+                <Setter Property="Foreground" Value="#FFE6E6E6"/>
+                <Setter Property="Cursor" Value="None" />
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--TOGGLE BUTTONS-->
+    <Style TargetType="ToggleButton">
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Width" Value="50px" />
+        <Setter Property="Height" Value="50px" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#FF999999" />
+        <Setter Property="ToolTipService.InitialShowDelay" Value="600"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border CornerRadius="25" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{TemplateBinding Opacity}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="Background" Value="#FFDFDFDF" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFD7E0E2"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" Value="#FFA0A0A0"/>

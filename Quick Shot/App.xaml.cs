@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WinForms = System.Windows.Forms;
 
 namespace Quick_Shot
 {
@@ -13,6 +14,8 @@ namespace Quick_Shot
     /// </summary>
     public partial class App : Application
     {
+        System.Windows.Forms.NotifyIcon notifyicon;
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             new System.Threading.Mutex(true, "Quick Shot", out bool createdNew);
@@ -21,6 +24,14 @@ namespace Quick_Shot
                 MessageBox.Show("App is already running!", "Quick Shot", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK);
                 Environment.Exit(0);
             }
+
+            notifyicon = new System.Windows.Forms.NotifyIcon
+            {
+                Icon = new System.Drawing.Icon(GetResourceStream(new Uri("pack://application:,,,/Icons/nicon.ico")).Stream),
+                ContextMenu = CreateIconContextMenu(),
+                Visible = true
+            };
+            notifyicon.Click += new EventHandler(OpenSettings);
 
             //HotKeyManager.RegisterHotKey(System.Windows.Forms.Keys.X, KeyModifiers.Alt);
             //HotKeyManager.RegisterHotKey(System.Windows.Forms.Keys.N, KeyModifiers.Windows);
@@ -32,11 +43,28 @@ namespace Quick_Shot
             //cap.CaptureActiveWindow().Save(temp);
             //System.Diagnostics.Process.Start(temp);
             //Environment.Exit(0);
+
+            Global.OpenSettings();
+        }
+        
+        private WinForms.ContextMenu CreateIconContextMenu()
+        {
+            WinForms.ContextMenu cm = new WinForms.ContextMenu();
+            cm.MenuItems.Add(new WinForms.MenuItem("Capture main screen", new EventHandler(CloseApp)));
+            cm.MenuItems.Add(new WinForms.MenuItem("-"));
+            cm.MenuItems.Add(new WinForms.MenuItem("&Settings", new EventHandler(OpenSettings)));
+            cm.MenuItems.Add(new WinForms.MenuItem("&Quit", new EventHandler(CloseApp)));
+            return cm;
         }
 
-        private void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
+        private void CloseApp(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("HOTKEY! {0} {1}", e.Key.ToString(), e.Modifiers.ToString());
+            Environment.Exit(0);
+        }
+
+        private void OpenSettings(object sender, EventArgs e)
+        {
+            Global.OpenSettings();
         }
     }
 }
